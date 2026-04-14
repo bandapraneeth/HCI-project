@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Room Booking – MEDI SYNC</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header><div class="header-brand"><div class="cross-icon">✚</div>MEDI SYNC</div></header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Login</a>
+    <a href="signup.html">Sign Up</a>
+  </nav>
+  <div class="page-wrap">
+    <div class="container" style="max-width:580px;">
+      <h2>Reserve a Room</h2>
+      <p class="subtitle">Select your preferred room type and complete booking details below.</p>
+
+      <!-- Room Type Selector -->
+      <label style="font-size:0.82rem;font-weight:600;text-transform:uppercase;letter-spacing:0.3px;color:var(--gray-800);display:block;margin-bottom:10px;">Select Room Type</label>
+      <div class="room-options" id="roomOptions">
+        <div class="room-card" data-value="general" data-price="800" onclick="selectRoom(this)">
+          <div class="room-icon">🛏️</div>
+          <h4>General Ward</h4>
+          <div class="price">₹800/day</div>
+        </div>
+        <div class="room-card" data-value="private" data-price="2500" onclick="selectRoom(this)">
+          <div class="room-icon">🏨</div>
+          <h4>Private Room</h4>
+          <div class="price">₹2,500/day</div>
+        </div>
+        <div class="room-card" data-value="icu" data-price="6000" onclick="selectRoom(this)">
+          <div class="room-icon">🏥</div>
+          <h4>ICU</h4>
+          <div class="price">₹6,000/day</div>
+        </div>
+      </div>
+      <div class="error" id="roomTypeErr"></div>
+
+      <form id="roomForm" novalidate style="margin-top:24px;">
+        <div class="form-group">
+          <label for="roomPatientName">Patient Name</label>
+          <div class="input-icon-wrap">
+            <span class="icon">👤</span>
+            <input type="text" id="roomPatientName" placeholder="Full name of patient">
+          </div>
+          <div class="error" id="nameErr"></div>
+        </div>
+        <div class="form-group">
+          <label for="roomPhone">Contact Number</label>
+          <div class="input-icon-wrap">
+            <span class="icon">📞</span>
+            <input type="tel" id="roomPhone" placeholder="+91 98765 43210">
+          </div>
+          <div class="error" id="phoneErr"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div class="form-group">
+            <label for="checkIn">Check-in Date</label>
+            <input type="date" id="checkIn">
+            <div class="error" id="checkInErr"></div>
+          </div>
+          <div class="form-group">
+            <label for="roomDays">Number of Days</label>
+            <input type="number" id="roomDays" placeholder="e.g. 3" min="1">
+            <div class="error" id="daysErr"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="roomNotes">Special Requirements (Optional)</label>
+          <textarea id="roomNotes" placeholder="Any dietary, accessibility, or medical notes…"></textarea>
+        </div>
+
+        <!-- Cost Summary -->
+        <div id="costSummary" style="display:none;background:var(--green-pale);border:1px solid var(--green-light);border-radius:10px;padding:16px;margin-bottom:20px;">
+          <div style="display:flex;justify-content:space-between;font-size:0.9rem;color:var(--gray-800);">
+            <span id="summaryLabel">Room × Days</span>
+            <strong id="summaryTotal" style="color:var(--green-deep);">₹0</strong>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary" id="roomBtn">Confirm Booking</button>
+      </form>
+    </div>
+  </div>
+  <footer><p>&copy; 2024 <strong>Medi Sync</strong>. All Rights Reserved.</p></footer>
+  <div class="success-toast" id="toast">🛏️ Room booked successfully! We'll confirm via SMS.</div>
+  <script src="script.js"></script>
+</body>
+</html>

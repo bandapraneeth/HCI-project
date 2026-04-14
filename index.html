@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MEDI SYNC – Hospital Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="header-brand">
+      <div class="cross-icon">✚</div>
+      MEDI SYNC
+    </div>
+  </header>
+  <nav>
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Login</a>
+    <a href="signup.html">Sign Up</a>
+  </nav>
+
+  <div class="page-wrap">
+    <section class="hero">
+      <div class="hero-particles" id="heroParticles"></div>
+      <div class="hero-badge">🏥 Trusted Since 2019</div>
+      <h1>Your Health, <span class="highlight">Our Priority</span></h1>
+      <p>Providing world-class healthcare services with compassion, technology, and trusted expertise — anytime, anywhere.</p>
+      <div class="hero-stats">
+        <div class="stat"><span class="num counter" data-target="1200">0</span><span class="lbl">Patients Monthly</span></div>
+        <div class="stat"><span class="num counter" data-target="85">0</span><span class="lbl">Expert Doctors</span></div>
+        <div class="stat"><span class="num counter" data-target="24">0</span><span class="lbl">Hours / 7 Days</span></div>
+        <div class="stat"><span class="num counter" data-target="5">0</span><span class="lbl">Years of Excellence</span></div>
+      </div>
+    </section>
+
+    <div class="modules-header">
+      <div class="modules-label">✦ What We Offer</div>
+      <h2 class="modules-title">Our Services</h2>
+      <div class="modules-line"></div>
+    </div>
+
+    <div class="modules">
+      <div class="module">
+        <div class="module-icon">📅</div>
+        <h3>Book Appointment</h3>
+        <p>Schedule your visit with our specialist doctors quickly and easily online.</p>
+        <a href="Book_Appointment.html" class="btn"><span>Book Now</span></a>
+      </div>
+      <div class="module">
+        <div class="module-icon">🚑</div>
+        <h3>Book Ambulance</h3>
+        <p>Request fast, reliable emergency ambulance service at any time.</p>
+        <a href="Book_Ambulance.html" class="btn"><span>Request Now</span></a>
+      </div>
+      <div class="module">
+        <div class="module-icon">🛏️</div>
+        <h3>Room Booking</h3>
+        <p>Reserve a comfortable room for your medical stay — from general to ICU.</p>
+        <a href="Room_Booking.html" class="btn"><span>Reserve Room</span></a>
+      </div>
+      <div class="module">
+        <div class="module-icon">💊</div>
+        <h3>Pharmacy</h3>
+        <p>Order prescribed medicines and have them delivered to your ward.</p>
+        <a href="pharmacy.html" class="btn"><span>Order Now</span></a>
+      </div>
+      <div class="module">
+        <div class="module-icon">🔬</div>
+        <h3>Lab Tests</h3>
+        <p>Book lab tests and get digital reports delivered right to your account.</p>
+        <a href="lab.html" class="btn"><span>Book Test</span></a>
+      </div>
+      <div class="module">
+        <div class="module-icon">📋</div>
+        <h3>My Records</h3>
+        <p>Access and manage your complete medical history and prescriptions.</p>
+        <a href="records.html" class="btn"><span>View Records</span></a>
+      </div>
+    </div>
+
+    <div class="features-ribbon">
+      <div class="features-ribbon-grid">
+        <div class="feature-item">
+          <div class="fi-icon">⚡</div>
+          <h4>Instant Access</h4>
+          <p>Book appointments, labs and rooms from any device in seconds.</p>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon">🔐</div>
+          <h4>Secure & Private</h4>
+          <p>Your health data is encrypted and protected at every step.</p>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon">🌐</div>
+          <h4>Available 24/7</h4>
+          <p>Round-the-clock services with emergency response always on standby.</p>
+        </div>
+        <div class="feature-item">
+          <div class="fi-icon">🏆</div>
+          <h4>Award Winning</h4>
+          <p>Recognised as the best hospital system for 5 consecutive years.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 <strong>Medi Sync</strong>. All Rights Reserved. | Medi Groups</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    (function() {
+      var container = document.getElementById('heroParticles');
+      if (!container) return;
+      for (var i = 0; i < 18; i++) {
+        var span = document.createElement('span');
+        var size = Math.random() * 16 + 6;
+        span.style.cssText = 'width:' + size + 'px;height:' + size + 'px;left:' + (Math.random()*100) + '%;bottom:-20px;animation-duration:' + (Math.random()*8+6) + 's;animation-delay:' + (Math.random()*8) + 's;opacity:' + (Math.random()*0.4+0.1) + ';';
+        container.appendChild(span);
+      }
+    })();
+  </script>
+</body>
+</html>
