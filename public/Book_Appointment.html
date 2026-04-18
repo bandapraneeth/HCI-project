@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Appointment – MEDI SYNC</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header><div class="header-brand"><div class="cross-icon">✚</div>MEDI SYNC</div></header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Login</a>
+    <a href="signup.html">Sign Up</a>
+  </nav>
+  <div class="page-wrap">
+    <div class="container" style="max-width:560px;">
+      <h2>Book an Appointment</h2>
+      <p class="subtitle">Schedule your visit with our specialist doctors in minutes.</p>
+
+      <div class="step-bar" id="stepBar">
+        <div class="step active" id="step1Label">1. Details</div>
+        <div class="step" id="step2Label">2. Doctor</div>
+        <div class="step" id="step3Label">3. Schedule</div>
+      </div>
+
+      <form id="apptForm" novalidate>
+        <!-- Step 1 -->
+        <div id="step1">
+          <div class="form-group">
+            <label for="apptName">Patient Name</label>
+            <div class="input-icon-wrap">
+              <span class="icon">👤</span>
+              <input type="text" id="apptName" placeholder="Full name">
+            </div>
+            <div class="error" id="apptNameErr"></div>
+          </div>
+          <div class="form-group">
+            <label for="apptPhone">Phone Number</label>
+            <div class="input-icon-wrap">
+              <span class="icon">📞</span>
+              <input type="tel" id="apptPhone" placeholder="+91 98765 43210">
+            </div>
+            <div class="error" id="apptPhoneErr"></div>
+          </div>
+          <div class="form-group">
+            <label for="apptAge">Age</label>
+            <input type="number" id="apptAge" placeholder="e.g. 35" min="1" max="120">
+            <div class="error" id="apptAgeErr"></div>
+          </div>
+          <button type="button" class="btn-primary" onclick="nextStep(1)">Continue →</button>
+        </div>
+
+        <!-- Step 2 -->
+        <div id="step2" style="display:none;">
+          <div class="form-group">
+            <label for="apptDept">Department</label>
+            <select id="apptDept" onchange="updateDoctors()">
+              <option value="">Select Department</option>
+              <option value="cardiology">Cardiology</option>
+              <option value="ortho">Orthopedics</option>
+              <option value="neuro">Neurology</option>
+              <option value="pediatrics">Pediatrics</option>
+              <option value="general">General Medicine</option>
+            </select>
+            <div class="error" id="apptDeptErr"></div>
+          </div>
+          <div class="form-group">
+            <label for="apptDoctor">Select Doctor</label>
+            <select id="apptDoctor">
+              <option value="">— Choose department first —</option>
+            </select>
+            <div class="error" id="apptDoctorErr"></div>
+          </div>
+          <div style="display:flex;gap:12px;">
+            <button type="button" class="btn-primary" style="background:var(--gray-200);color:var(--gray-800);" onclick="prevStep(2)">← Back</button>
+            <button type="button" class="btn-primary" onclick="nextStep(2)">Continue →</button>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div id="step3" style="display:none;">
+          <div class="form-group">
+            <label for="apptDate">Preferred Date</label>
+            <input type="date" id="apptDate">
+            <div class="error" id="apptDateErr"></div>
+          </div>
+          <div class="form-group">
+            <label for="apptTime">Preferred Time</label>
+            <select id="apptTime">
+              <option value="">Select Time Slot</option>
+              <option>09:00 AM – 09:30 AM</option>
+              <option>09:30 AM – 10:00 AM</option>
+              <option>10:00 AM – 10:30 AM</option>
+              <option>11:00 AM – 11:30 AM</option>
+              <option>02:00 PM – 02:30 PM</option>
+              <option>03:00 PM – 03:30 PM</option>
+              <option>04:00 PM – 04:30 PM</option>
+            </select>
+            <div class="error" id="apptTimeErr"></div>
+          </div>
+          <div class="form-group">
+            <label for="apptReason">Reason for Visit (Optional)</label>
+            <textarea id="apptReason" placeholder="Briefly describe your symptoms or concern…"></textarea>
+          </div>
+          <div style="display:flex;gap:12px;">
+            <button type="button" class="btn-primary" style="background:var(--gray-200);color:var(--gray-800);" onclick="prevStep(3)">← Back</button>
+            <button type="submit" class="btn-primary" id="apptBtn">Confirm Appointment</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <footer><p>&copy; 2024 <strong>Medi Sync</strong>. All Rights Reserved.</p></footer>
+  <div class="success-toast" id="toast">📅 Appointment confirmed! Check your SMS for details.</div>
+  <script src="script.js"></script>
+</body>
+</html>

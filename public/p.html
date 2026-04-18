@@ -1,0 +1,169 @@
+# Prompt:
+# The system should include user authentication (login/register) with role-based access (Patient, Doctor, Admin).
+# Patients should be able to book appointments, view medical records, and receive notifications.
+# Doctors should be able to view patient details, update diagnosis, and provide prescriptions.
+# Admin should manage users, appointments, and system data.
+# Ensure the code is clean, structured, and beginner-friendly.
+
+# Prompt:
+# Design a responsive healthcare dashboard UI using HTML, CSS, and JavaScript.
+# The dashboard should include:
+# - Login and Registration pages
+# - Patient dashboard (appointments, records, notifications)
+# - Doctor dashboard (patient list, diagnosis, prescriptions)
+
+# - Admin dashboard (user and appointment management)
+
+# The UI should be clean, modern,  using cards/grid layout.
+
+
+# Prompt:
+
+# Build an appointment booking system.
+# The system should:
+# - Allow patients to select doctor and time slot
+# - Check doctor availability
+# - Store appointment details in database
+# - Send confirmation and notifications
+
+# Prompt:
+# Design database schema for Medisync system.
+# Tables should include:
+# - Users (id, name, role, login details)
+# - Appointments (patient_id, doctor_id, date, status)
+# - Medical Records (diagnosis, prescription, history)
+# Ensure relationships and efficient queries.
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediSync - Appointment Booking</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f5f5; }
+        .container { max-width: 900px; margin: 40px auto; padding: 20px; }
+        .booking-card { background: white; border-radius: 8px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #333; margin-bottom: 30px; text-align: center; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; color: #555; }
+        select, input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+        select:focus, input:focus { outline: none; border-color: #4CAF50; box-shadow: 0 0 5px rgba(76,175,80,0.3); }
+        .slots-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; margin-top: 10px; }
+        .time-slot { padding: 10px; border: 2px solid #ddd; border-radius: 4px; text-align: center; cursor: pointer; transition: all 0.3s; }
+        .time-slot:hover { border-color: #4CAF50; }
+        .time-slot.available { background: #e8f5e9; }
+        .time-slot.booked { background: #ffebee; color: #999; cursor: not-allowed; }
+        .time-slot.selected { background: #4CAF50; color: white; border-color: #4CAF50; }
+        .btn { width: 100%; padding: 12px; background: #4CAF50; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; margin-top: 20px; }
+        .btn:hover { background: #45a049; }
+        .confirmation { background: #e8f5e9; border-left: 4px solid #4CAF50; padding: 15px; margin-top: 20px; border-radius: 4px; display: none; }
+        .confirmation.show { display: block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="booking-card">
+            <h1>📅 Book an Appointment</h1>
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="doctor">Select Doctor:</label>
+                    <select id="doctor" required>
+                        <option value="">-- Choose a Doctor --</option>
+                        <option value="dr_smith">Dr. Smith (Cardiologist)</option>
+                        <option value="dr_jones">Dr. Jones (General)</option>
+                        <option value="dr_patel">Dr. Patel (Orthopedic)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">Select Date:</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label>Available Time Slots:</label>
+                    <div class="slots-container" id="slotsContainer"></div>
+                </div>
+                <div class="form-group">
+                    <label for="reason">Reason for Visit:</label>
+                    <input type="text" id="reason" placeholder="e.g., Regular Checkup" required>
+                </div>
+                <button type="submit" class="btn">Confirm Booking</button>
+            </form>
+            <div class="confirmation" id="confirmation">
+                <strong>✓ Appointment Confirmed!</strong>
+                <p id="confirmationText"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const bookedSlots = { dr_smith: ['09:00', '14:00'], dr_jones: ['10:00', '15:00'], dr_patel: ['11:00', '16:00'] };
+        let selectedSlot = null;
+
+        function generateTimeSlots() {
+            const slots = [];
+            for (let i = 9; i < 17; i++) {
+                slots.push(`${i.toString().padStart(2, '0')}:00`);
+            }
+            return slots;
+        }
+
+        function renderSlots() {
+            const doctor = document.getElementById('doctor').value;
+            const container = document.getElementById('slotsContainer');
+            container.innerHTML = '';
+            selectedSlot = null;
+
+            if (!doctor) return;
+
+            const slots = generateTimeSlots();
+            const booked = bookedSlots[doctor] || [];
+
+            slots.forEach(slot => {
+                const div = document.createElement('div');
+                div.className = `time-slot ${booked.includes(slot) ? 'booked' : 'available'}`;
+                div.textContent = slot;
+                if (!booked.includes(slot)) {
+                    div.onclick = () => selectSlot(slot, div);
+                }
+                container.appendChild(div);
+            });
+        }
+
+        function selectSlot(slot, element) {
+            document.querySelectorAll('.time-slot').forEach(el => el.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedSlot = slot;
+        }
+
+        document.getElementById('doctor').addEventListener('change', renderSlots);
+        document.getElementById('date').addEventListener('change', renderSlots);
+
+        document.getElementById('bookingForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (!selectedSlot) {
+                alert('Please select a time slot');
+                return;
+            }
+
+            const doctor = document.getElementById('doctor').value;
+            const date = document.getElementById('date').value;
+            const reason = document.getElementById('reason').value;
+
+            const confirmationText = `Doctor: ${doctor} | Date: ${date} | Time: ${selectedSlot} | Reason: ${reason}`;
+            document.getElementById('confirmationText').textContent = confirmationText;
+            document.getElementById('confirmation').classList.add('show');
+
+            console.log('Appointment booked:', { doctor, date, selectedSlot, reason });
+            setTimeout(() => { document.getElementById('bookingForm').reset(); }, 2000);
+        });
+
+        document.getElementById('date').min = new Date().toISOString().split('T')[0];
+    </script>
+</body>
+</html>

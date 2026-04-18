@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact – MEDI SYNC</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header><div class="header-brand"><div class="cross-icon">✚</div>MEDI SYNC</div></header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html" class="active">Contact</a>
+    <a href="login.html">Login</a>
+    <a href="signup.html">Sign Up</a>
+  </nav>
+  <div class="page-wrap">
+    <div class="contact-wrap">
+      <!-- Left Info -->
+      <div class="contact-info" style="opacity:0;animation:fadeUp 0.6s ease forwards 0.1s;">
+        <h2>Get in Touch</h2>
+        <p>We're here 24/7. Reach out for appointments, queries, or emergencies.</p>
+        <div class="contact-detail">
+          <div class="icon">📍</div>
+          <div class="text">
+            <div class="lbl">Address</div>
+            <div class="val">42 Health Avenue, Chennai – 600001</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="icon">📞</div>
+          <div class="text">
+            <div class="lbl">Phone</div>
+            <div class="val">+91 44 1234 5678</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="icon">✉️</div>
+          <div class="text">
+            <div class="lbl">Email</div>
+            <div class="val">care@medisync.in</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="icon">⏰</div>
+          <div class="text">
+            <div class="lbl">Working Hours</div>
+            <div class="val">24/7 – 365 Days</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Form -->
+      <div class="contact-form" style="opacity:0;animation:fadeUp 0.6s ease forwards 0.25s;">
+        <h2 style="font-family:'Playfair Display',serif;color:var(--green-deep);margin-bottom:6px;font-size:1.5rem;">Send a Message</h2>
+        <p style="color:var(--gray-500);font-size:0.88rem;margin-bottom:24px;">We typically respond within a few hours.</p>
+        <form id="contactForm" novalidate>
+          <div class="form-group">
+            <label for="contactName">Your Name</label>
+            <input type="text" id="contactName" placeholder="Full name">
+            <div class="error" id="contactNameErr"></div>
+          </div>
+          <div class="form-group">
+            <label for="contactEmail">Email Address</label>
+            <input type="email" id="contactEmail" placeholder="you@example.com">
+            <div class="error" id="contactEmailErr"></div>
+          </div>
+          <div class="form-group">
+            <label for="contactSubject">Subject</label>
+            <select id="contactSubject">
+              <option value="">Select Subject</option>
+              <option>Appointment Enquiry</option>
+              <option>Billing & Insurance</option>
+              <option>Medical Records</option>
+              <option>General Feedback</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="contactMsg">Message</label>
+            <textarea id="contactMsg" placeholder="How can we help you?"></textarea>
+            <div class="error" id="contactMsgErr"></div>
+          </div>
+          <button type="submit" class="btn-primary" id="contactBtn">Send Message ✉️</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <footer><p>&copy; 2024 <strong>Medi Sync</strong>. All Rights Reserved.</p></footer>
+  <div class="success-toast" id="toast">✉️ Message sent! We'll respond within 24 hours.</div>
+  <script src="script.js"></script>
+</body>
+</html>

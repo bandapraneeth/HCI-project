@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Ambulance – MEDI SYNC</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header><div class="header-brand"><div class="cross-icon">✚</div>MEDI SYNC</div></header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Login</a>
+    <a href="signup.html">Sign Up</a>
+  </nav>
+  <div class="page-wrap">
+    <div class="container" style="max-width:540px;">
+      <h2>🚑 Book Ambulance</h2>
+      <p class="subtitle">Our emergency team will reach you as quickly as possible.</p>
+
+      <div class="emergency-badge">
+        <div class="badge-icon">⚠️</div>
+        <p>For life-threatening emergencies, call <strong>108</strong> immediately. Use this form for non-critical urgent transport.</p>
+      </div>
+
+      <form id="ambulanceForm" novalidate>
+        <div class="form-group">
+          <label for="ambName">Patient Name</label>
+          <div class="input-icon-wrap">
+            <span class="icon">👤</span>
+            <input type="text" id="ambName" placeholder="Full name of patient">
+          </div>
+          <div class="error" id="ambNameErr"></div>
+        </div>
+        <div class="form-group">
+          <label for="ambPhone">Contact Number</label>
+          <div class="input-icon-wrap">
+            <span class="icon">📞</span>
+            <input type="tel" id="ambPhone" placeholder="+91 98765 43210">
+          </div>
+          <div class="error" id="ambPhoneErr"></div>
+        </div>
+        <div class="form-group">
+          <label for="ambPickup">Pickup Address</label>
+          <div class="input-icon-wrap">
+            <span class="icon">📍</span>
+            <input type="text" id="ambPickup" placeholder="Full pickup address">
+          </div>
+          <div class="error" id="ambPickupErr"></div>
+        </div>
+        <div class="form-group">
+          <label for="ambType">Ambulance Type</label>
+          <select id="ambType">
+            <option value="">Select Type</option>
+            <option value="basic">Basic Life Support (BLS)</option>
+            <option value="advanced">Advanced Life Support (ALS)</option>
+            <option value="neonatal">Neonatal Ambulance</option>
+            <option value="mortuary">Mortuary Van</option>
+          </select>
+          <div class="error" id="ambTypeErr"></div>
+        </div>
+        <div class="form-group">
+          <label for="ambCondition">Patient Condition</label>
+          <textarea id="ambCondition" placeholder="Briefly describe current symptoms or condition…"></textarea>
+        </div>
+        <button type="submit" class="btn-primary" id="ambBtn" style="background:linear-gradient(135deg,#e53935,#b71c1c);">🚨 Request Ambulance Now</button>
+      </form>
+    </div>
+  </div>
+  <footer><p>&copy; 2024 <strong>Medi Sync</strong>. All Rights Reserved.</p></footer>
+  <div class="success-toast" id="toast">🚑 Ambulance dispatched! ETA: ~15 minutes. Stay on line.</div>
+  <script src="script.js"></script>
+</body>
+</html>
